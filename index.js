@@ -31,7 +31,7 @@ const writeUsers = async()=>{
     console.log(currentDate);
     const docRef = db.collection('environment').doc(`${currentDate}`);
 
-let finaltemp
+    let finaltemp
     let finalhumidity
 
     sensor.read(sensorNumber, pinNumber, (err, temperature, humidity) => {
@@ -62,8 +62,6 @@ const sleep=(milliseconds) =>{
 }
 
 
-sleep(2000);
-
 
 
 const readUsers = async()=>{
@@ -73,9 +71,7 @@ const readUsers = async()=>{
     });
 }
 
-while(1===1){
+
     writeUsers().then(r => console.log('Write to db success'))
-    sleep(1000);
-}
 
 

@@ -47,8 +47,8 @@ const writeUsers = async()=>{
     });
 
     let dbObj = {
-        temp: finaltemp,
-        humidity: finalhumidity
+        "temp": finaltemp,
+        "humidity": finalhumidity
     }
     await docRef.set(dbObj);
 

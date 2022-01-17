@@ -1,0 +1,81 @@
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+
+
+const serviceAccount = require('./hydro-ai-338418-1a924d247d0e.json');
+
+initializeApp({
+    credential: cert(serviceAccount)
+});
+
+const db = getFirestore();
+
+
+const sensor = require('node-dht-sensor');
+
+const sensorNumber = 22;
+const pinNumber = 4;
+
+
+
+
+const writeUsers = async()=>{
+
+    let currentDate = new Date().toLocaleString('en-US', {
+        day: "2-digit",
+        month: "2-digit",
+        year: "2-digit",
+        hour12: false,
+        hour: "numeric",
+        minute: "numeric"}).replaceAll('/','-');
+    console.log(currentDate);
+    const docRef = db.collection('environment').doc(`${currentDate}`);
+
+let finaltemp
+    let finalhumidity
+
+    sensor.read(sensorNumber, pinNumber, (err, temperature, humidity) => {
+        if (err) {
+            console.log("AHHHHHHHH error", err);
+            return;
+        }
+
+        console.log('temp: ' + temperature.toFixed(1) + '°C, ' + 'humidity: ' + humidity.toFixed(1) +  '%');
+        finaltemp = temperature.toFixed(1) + '°C';
+        finalhumidity = humidity.toFixed(1)  +  '%';
+
+    });
+
+    await docRef.set({
+        temp: `${finaltemp}`,
+        humidity: `${finalhumidity}`
+    });
+
+}
+
+const sleep=(milliseconds) =>{
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
+
+sleep(2000);
+
+
+
+const readUsers = async()=>{
+    const snapshot = await db.collection('environment').get();
+    snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
+    });
+}
+
+while(1===1){
+    writeUsers().then(r => console.log('Write to db success'))
+    sleep(1000);
+}
+
+

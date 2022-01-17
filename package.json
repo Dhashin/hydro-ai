@@ -1,0 +1,15 @@
+{
+  "name": "hydro-ai",
+  "version": "1.0.0",
+  "description": "Track and record Hydroponic information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dhashin Moodley",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^10.0.1",
+    "node-dht-sensor": "^0.4.3"
+  }
+}

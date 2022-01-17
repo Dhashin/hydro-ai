@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hydro-ai-338418",
+  "private_key_id": "1a924d247d0e06e42b96a250f719f37928648bbe",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC4/CbE+MsZ9fr4\nl2rBSl5LxmKFNlKX17zLBz1spFsWunGQ9CDIhLyuW2vxy9+B9lTM7D8r+z//XBc5\nFE4dAzB38MTRTII4DcZZteUf81pGyZ4mXWznLPVuNE+shvN6+nAuIZMzqoAorq9p\n/yEkSktdUOVuPCzYqn4wRMLTFRSkTtZa+dcDQE14PY/sJlZZHXQifZYqM9RC/Kvo\ncooHgBiF3RPRo65zgMg2+mONfvyRhz2G0yEAvoI6gf0o9TN/nGcSzjjM+DyVb/er\ntwJAUYWRDLZ46zCkLxeiwaT0B2z4NeFySWSoMW6bUH4UCOHinEZLjFT8U222ELHJ\nv7bLLshnAgMBAAECggEAD6rWOHCUox+WS1+9BvSe2pl0LAbXJU0nDFBnVMBG3BHx\nHxnOJ62LstNuEmNLYYfU1CuziKzAVYcd4GkRL0aJ4F61YhSyIr/n63Pgcr2ls8Ei\ncpVkbTVS7taMuPa6ayay7EqjsQiLz5DxV8ToBa7VMJNyxcy1mlQ2WS2PDVmyZIgJ\nM1/m9mOLeeIzuUBX3tJ+ylTXvdbPHsuj/tOd4H8/rwWGLMdkthlY3QVo49i69xlM\ndJsRFWoKau05CJu8hwqNoHuPI14jXjAchkA5CBfW4oTK94x+CK9oYwa+2BKhUlC1\n0m9Cl0Ewajflf+UhwZkyye4DNZN6G1mBlIsMaWI4YQKBgQDrUKomJfz/zhflSg+n\nlvG9vz7NmuAJrjGhvNFClkXxi8DpLQgXwsDwWqEJKfZ7yoeM03U3Ik8Bgucsb4ei\nnbAKJ6JE/3aMzAJrkVaSOZHLYLomOlOtPoJz9Mwm3mAD1hxSWz/cqc8j6EYS1/yQ\nb5dXSx3ru8a1jgtNAAzbMQoewwKBgQDJPuY+YSzVYLUO5M5/kcnshp8MkliLKxSU\nudKA319oy0HeaDWvhtak1ZpTYcxTCJnQpriZ18Xo57WwqbYjWztp4Hp/caMTJXJ2\n9o18AM4p/9GKsbvYRCezfoaISR426RAFYfLapharVX5o6Et1PGYzDexMbi1rCQu/\nBzmrneVdjQKBgC4U0904nzzw/Rj30ez90EVaSFA3PhxnMmz77vbdOsE8nwCKwwT0\nLJhlBxgmUZCYbscTOeccHuCq49590M/1lV3HuS1N4cdcxDSQd6WXBIgRXyLRVUWd\n8ioHDFuoPKFDsrQmDnGGB3x+pgpWpa0bTUXY/fkGArnXITtpARuDlPnFAoGBAIfY\ndLWhBRGYcT/3hckpUWPfT9e9phVzZDYs5YLmxdHIetM2Bx9QZu3n3n/woWtff+0P\nzcbTl53rY4M4XGGrgQSsaiRDQjB3c7gIIGOXa5OAQyNbbJDFGQOaIhg3OzUXyB/K\nCZQ8z0qisG0CeYVO2zIVcO/645/AAHTX3L8TG7Q1AoGBALqnTFYDAEmANpWf+Oy+\nt1LhJ6MyQbRopBIZD4im1BQZVpkSoO057yKkntVKfxMc5XvO7Ly6pitdewxqwN3z\nK5OodNsa2II3sJ9N5cycjf43kC+RoEpiCV9Z5Zh5VlWoIJCHh6RDgtCfTbz19Gc3\n665G0r+QR1ljwS0/26IKv6am\n-----END PRIVATE KEY-----\n",
+  "client_email": "raspberry-pi-001@hydro-ai-338418.iam.gserviceaccount.com",
+  "client_id": "114110799884918466206",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/raspberry-pi-001%40hydro-ai-338418.iam.gserviceaccount.com"
+}

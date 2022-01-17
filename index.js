@@ -47,8 +47,8 @@ const writeUsers = async()=>{
     });
 
     await docRef.set({
-        temp: `${finaltemp}`,
-        humidity: `${finalhumidity}`
+        temp: finaltemp,
+        humidity: finalhumidity
     });
 
     sleep(3000);
@@ -76,12 +76,12 @@ const readUsers = async()=>{
 
 const execute = async ()=> {
     // Your async task will execute with await
-    while (1===1){
+
         await writeUsers().then(r => {
             console.log('Write to db success');
 
         })
-    }
+
 }
 
 

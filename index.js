@@ -51,6 +51,8 @@ const writeUsers = async()=>{
         humidity: `${finalhumidity}`
     });
 
+    sleep(3000);
+
 }
 
 const sleep=(milliseconds) =>{
@@ -74,7 +76,7 @@ const readUsers = async()=>{
 while (1===1){
     writeUsers().then(r => {
         console.log('Write to db success');
-        sleep(3000);
+
     })
 }
 

@@ -46,10 +46,11 @@ const writeUsers = async()=>{
 
     });
 
-    await docRef.set({
+    let dbObj = {
         temp: finaltemp,
         humidity: finalhumidity
-    });
+    }
+    await docRef.set(dbObj);
 
     sleep(3000);
 

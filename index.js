@@ -2,7 +2,7 @@ const { initializeApp, applicationDefault, cert } = require('firebase-admin/app'
 const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
 
 
-const serviceAccount = require('./hydro-ai-338418-1a924d247d0e.json');
+const serviceAccount = require('./key.json');
 
 initializeApp({
     credential: cert(serviceAccount)
@@ -71,7 +71,12 @@ const readUsers = async()=>{
     });
 }
 
+while (1===1){
+    writeUsers().then(r => {
+        console.log('Write to db success');
+        sleep(3000);
+    })
+}
 
-    writeUsers().then(r => console.log('Write to db success'))
 
 

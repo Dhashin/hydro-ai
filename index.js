@@ -74,7 +74,7 @@ const readUsers = async()=>{
 }
 
 while (1===1){
-    writeUsers().then(r => {
+    await writeUsers().then(r => {
         console.log('Write to db success');
 
     })

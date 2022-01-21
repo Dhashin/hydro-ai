@@ -46,6 +46,9 @@ const writeUsers = async()=>{
 
     });
 
+    console.log('===DEBUG', finaltemp)
+    console.log('===DEBUG', finalhumidity)
+
     await docRef.set({
         temp : `${finaltemp}`,
         humidity : `${finalhumidity}`

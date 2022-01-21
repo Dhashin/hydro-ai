@@ -50,7 +50,7 @@ const writeUsers = async()=>{
 
     });
 
-
+sleep(60000);
 
 
 

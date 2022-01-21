@@ -21,7 +21,7 @@ const pinNumber = 4;
 
 const writeUsers = async()=>{
 
-    let currentDate = new Date().toLocaleString('en-US', {
+    let currentDate = new Date().toLocaleString('en-ZA', {
         day: "2-digit",
         month: "2-digit",
         year: "2-digit",

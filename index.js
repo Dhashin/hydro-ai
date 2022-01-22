@@ -29,7 +29,7 @@ const writeUsers = async()=>{
         hour: "numeric",
         minute: "numeric"}).replaceAll('/','-');
     console.log(currentDate);
-    const docRef = db.collection('environment').doc(`${currentDate}`);
+    const docRef = await db.collection('environment').doc(`${currentDate}`);
 
     let finaltemp
     let finalhumidity
@@ -77,14 +77,15 @@ const readUsers = async()=>{
 
 const execute = async ()=> {
     // Your async task will execute with await
-
+    console.log("---Start write users---")
     await writeUsers().then(r => {
         console.log('Write to db success');
 
     })
+    console.log("---End write users---")
 
 
 }
 
 
-execute().then();
+execute();

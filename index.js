@@ -34,7 +34,7 @@ const writeUsers = async()=>{
     let finaltemp
     let finalhumidity
 
-     sensor.read(sensorNumber, pinNumber, (err, temperature, humidity) => {
+     sensor.read(sensorNumber, pinNumber, async(err, temperature, humidity) =>  {
         if (err) {
             console.log("AHHHHHHHH error", err);
             return;
@@ -43,14 +43,14 @@ const writeUsers = async()=>{
         console.log('temp: ' + temperature.toFixed(1) + '°C, ' + 'humidity: ' + humidity.toFixed(1) +  '%');
         finaltemp = temperature.toFixed(1) + '°C';
         finalhumidity = humidity.toFixed(1)  +  '%';
-         docRef.set({
+        await docRef.set({
             temp : `${finaltemp}`,
             humidity : `${finalhumidity}`
         });
 
     });
 
-sleep(60000);
+
 
 
 
@@ -82,6 +82,7 @@ while (1===1) {
         console.log('Write to db success');
 
     })
+    sleep(60000);
 }
 }
 

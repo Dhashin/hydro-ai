@@ -34,7 +34,7 @@ const writeUsers = async()=>{
     let finaltemp
     let finalhumidity
 
-     sensor.read(sensorNumber, pinNumber, async(err, temperature, humidity) =>  {
+     await sensor.read(sensorNumber, pinNumber, async(err, temperature, humidity) =>  {
         if (err) {
             console.log("AHHHHHHHH error", err);
             return;

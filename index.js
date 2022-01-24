@@ -29,11 +29,10 @@ async function exec() {
     }
 }
 
-exec();
+//exec();
 
 
-
-const writeUsers = async()=>{
+async function writeUsers() {
 
     let currentDate = new Date().toLocaleString('en-ZA', {
         day: "2-digit",
@@ -64,17 +63,25 @@ const writeUsers = async()=>{
     //
     // });
 
-    sensor.read(sensorNumber, pinNumber).then( (err, temperature, humidity) => {
-        if(err){
-            console.log("Error reading value");
-        }else{
-            finaltemp = temperature.toFixed(1) + '°C';
-            finalhumidity = humidity.toFixed(1)  +  '%';
+    try {
+        const res = await sensor.read(22, 4);
 
-            console.log('temp: ' + finaltemp + 'humidity: ' + finalhumidity);
+        finaltemp = res.temperature.toFixed(1) + '°C';
+        finalhumidity = res.humidity.toFixed(1)  +  '%';
 
-        }
-    })
+        console.log(
+            `temp: ${finaltemp}` +
+            `humidity: ${finalhumidity}`
+        );
+            docRef.set({
+                temp : `${finaltemp}`,
+                humidity : `${finalhumidity}`
+            }).then(result => {
+                console.log(result)
+            });
+    } catch (err) {
+        console.error("Failed to read sensor data:", err);
+    }
 
 
 
@@ -114,4 +121,5 @@ const execute = async ()=> {
 }
 
 
-//execute();
+writeUsers().then(()=>{console.log('Execution complete')});
+

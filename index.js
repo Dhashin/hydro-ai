@@ -119,6 +119,9 @@ const execute = async ()=> {
 
 }
 
+while(1===1){
+    await writeUsers();
+    sleep(60000);
+}
 
-writeUsers().then(()=>{console.log('Execution complete')});
 

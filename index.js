@@ -33,22 +33,34 @@ const writeUsers = async()=>{
 
     let finaltemp
     let finalhumidity
+    //
+    //  await sensor.read(sensorNumber, pinNumber, (err, temperature, humidity) =>  {
+    //     if (err) {
+    //         console.log("AHHHHHHHH error", err);
+    //         return;
+    //     }
+    //
+    //     console.log('temp: ' + temperature.toFixed(1) + '°C, ' + 'humidity: ' + humidity.toFixed(1) +  '%');
+    //     finaltemp = temperature.toFixed(1) + '°C';
+    //     finalhumidity = humidity.toFixed(1)  +  '%';
+    //     docRef.set({
+    //         temp : `${finaltemp}`,
+    //         humidity : `${finalhumidity}`
+    //     });
+    //
+    // });
 
-     await sensor.read(sensorNumber, pinNumber, async(err, temperature, humidity) =>  {
-        if (err) {
-            console.log("AHHHHHHHH error", err);
-            return;
+    sensor.read(sensorNumber, pinNumber).then( (err, temperature, humidity) => {
+        if(err){
+            console.log("Error reading value");
+        }else{
+            finaltemp = temperature.toFixed(1) + '°C';
+            finalhumidity = humidity.toFixed(1)  +  '%';
+
+            console.log('temp: ' + finaltemp + 'humidity: ' + finalhumidity);
+
         }
-
-        console.log('temp: ' + temperature.toFixed(1) + '°C, ' + 'humidity: ' + humidity.toFixed(1) +  '%');
-        finaltemp = temperature.toFixed(1) + '°C';
-        finalhumidity = humidity.toFixed(1)  +  '%';
-        await docRef.set({
-            temp : `${finaltemp}`,
-            humidity : `${finalhumidity}`
-        });
-
-    });
+    })
 
 
 

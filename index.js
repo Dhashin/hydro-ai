@@ -11,7 +11,7 @@ initializeApp({
 const db = getFirestore();
 
 
-const sensor = require('node-dht-sensor');
+const sensor = require('node-dht-sensor').promises;
 
 const sensorNumber = 22;
 const pinNumber = 4;

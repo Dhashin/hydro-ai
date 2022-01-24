@@ -73,12 +73,11 @@ async function writeUsers() {
             `temp: ${finaltemp}` +
             `humidity: ${finalhumidity}`
         );
-            docRef.set({
+           const result= await docRef.set({
                 temp : `${finaltemp}`,
                 humidity : `${finalhumidity}`
-            }).then(result => {
-                console.log(result)
-            });
+            })
+        console.log(result);
     } catch (err) {
         console.error("Failed to read sensor data:", err);
     }

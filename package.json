@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "firebase-admin": "^10.0.1",
-    "node-dht-sensor": "^0.4.3"
+    "node-dht-sensor": "^0.4.3",
+    "onoff": "^6.0.3"
   }
 }

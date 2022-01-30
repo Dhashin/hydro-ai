@@ -3,7 +3,18 @@ let LED = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
 
 
 console.log('Cureent state is ', LED.readSync())
-//LED.writeSync(1); //set pin state to 1 (turn LED on)
+
+
+async function runPin(){
+    await LED.writeSync(1); //set pin state to 1 (turn LED on)
+    console.log('Current state is ', LED.readSync())
+    console.log('Current state is ', LED.readSync())
+    console.log('Current state is ', LED.readSync())
+    console.log('Current state is ', LED.readSync())
+    console.log('Current state is ', LED.readSync())
+
+}
+
 
 // function blinkLED() { //function to start blinking
 //     if (LED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
@@ -20,4 +31,5 @@ console.log('Cureent state is ', LED.readSync())
 // }
 //
 // setTimeout(endBlink, 5000); //stop blinking after 5 seconds
+runPin().then(r => console.log(r));
 LED.unexport();

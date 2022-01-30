@@ -55,73 +55,73 @@ const getGpioState = () =>{
 }
 
 //  On and off controls for 21
-export const turnOn21 = () =>{
+ const turnOn21 = () =>{
     gpio21.writeSync(1);
 }
 
-export const turnOff21 = () =>{
+ const turnOff21 = () =>{
     gpio21.writeSync(0);
 }
 
 
 //  On and off controls for 20
-export const turnOn20 = () =>{
+ const turnOn20 = () =>{
     gpio20.writeSync(1);
 }
 
-export const turnOff20 = () =>{
+ const turnOff20 = () =>{
     gpio20.writeSync(0);
 }
 
 
 
 //  On and off controls for 16
-export const turnOn16 = () =>{
+ const turnOn16 = () =>{
     gpio16.writeSync(1);
 }
 
-export const turnOff16 = () =>{
+ const turnOff16 = () =>{
     gpio16.writeSync(0);
 }
 
 
 //  On and off controls for 26
-export const turnOn26 = () =>{
+ const turnOn26 = () =>{
     gpio26.writeSync(1);
 }
 
-export const turnOff26 = () =>{
+ const turnOff26 = () =>{
     gpio26.writeSync(0);
 }
 
 
 
 //  On and off controls for 19
-export const turnOn19 = () =>{
+ const turnOn19 = () =>{
     gpio19.writeSync(1);
 }
 
-export const turnOff19 = () =>{
+ const turnOff19 = () =>{
     gpio19.writeSync(0);
 }
 
 
 //  On and off controls for 6
-export const turnOn6 = () =>{
+ const turnOn6 = () =>{
     gpio6.writeSync(1);
 }
 
-export const turnOff6 = () =>{
+ const turnOff6 = () =>{
     gpio6.writeSync(0);
 }
 
 
 //  On and off controls for 13
-export const turnOn13 = () =>{
+ const turnOn13 = () =>{
     gpio13.writeSync(1);
 }
 
-export const turnOff13 = () =>{
+ const turnOff13 = () =>{
     gpio13.writeSync(0);
 }
 

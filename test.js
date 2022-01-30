@@ -1,12 +1,12 @@
 let Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-let LED = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
+const LED = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
 
 
 console.log('Cureent state is ', LED.readSync())
 
 
-async function runPin(){
-    await LED.writeSync(1); //set pin state to 1 (turn LED on)
+ function runPin(){
+    LED.writeSync(1); //set pin state to 1 (turn LED on)
     console.log('Current state is ', LED.readSync())
     console.log('Current state is ', LED.readSync())
     console.log('Current state is ', LED.readSync())
@@ -31,5 +31,5 @@ async function runPin(){
 // }
 //
 // setTimeout(endBlink, 5000); //stop blinking after 5 seconds
-runPin().then(r => console.log(r));
+runPin();
 LED.unexport();

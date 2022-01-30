@@ -39,10 +39,7 @@ const tearDown = () =>{
     gpio13.unexport();
 }
 
-const routes = {
-    '/on': switchRelayOn,
-    '/off': switchRelayOff
-};
+
 
 const getGpioState = () =>{
     return('Current state 21 is ', gpio21.readSync())
@@ -140,6 +137,10 @@ async function exec() {
     }
 }
 
+const routes = {
+    '/on': switchRelayOn,
+    '/off': switchRelayOff
+};
 //exec();
 
 
@@ -320,3 +321,9 @@ let server = http.createServer(function(request, response) {
     if (route) route(request, response);
     else utilities.sendResponse(response, 'Not Found', 404);
 }).listen(3000, '127.0.0.1');
+
+
+process.on('SIGINT', function() {
+    tearDown();
+    process.exit();
+});

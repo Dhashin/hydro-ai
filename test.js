@@ -20,3 +20,4 @@ LED.writeSync(1); //set pin state to 1 (turn LED on)
 // }
 //
 // setTimeout(endBlink, 5000); //stop blinking after 5 seconds
+LED.unexport();

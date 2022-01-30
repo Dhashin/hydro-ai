@@ -7,7 +7,13 @@ const gpio19 = new Gpio(19, 'out');
 const gpio6 = new Gpio(6, 'out');
 const gpio13 = new Gpio(13, 'out');
 
-console.log('Cureent state is ', LED.readSync())
+console.log('Current state 21 is ', gpio21.readSync())
+console.log('Current state 20 is ', gpio20.readSync())
+console.log('Current state 16 is ', gpio16.readSync())
+console.log('Current state 26 is ', gpio26.readSync())
+console.log('Current state 19 is ', gpio19.readSync())
+console.log('Current state 6 is ', gpio6.readSync())
+console.log('Current state 13 is ', gpio13.readSync())
 
 
  function runPin(){
@@ -19,13 +25,13 @@ console.log('Cureent state is ', LED.readSync())
      gpio6.writeSync(1);
      gpio13.writeSync(1);
 
-    console.log('Current state is ', gpio21.readSync())
-    console.log('Current state is ', gpio20.readSync())
-    console.log('Current state is ', gpio16.readSync())
-    console.log('Current state is ', gpio26.readSync())
-    console.log('Current state is ', gpio19.readSync())
-     console.log('Current state is ', gpio6.readSync())
-     console.log('Current state is ', gpio13.readSync())
+    console.log('Current state 21 is ', gpio21.readSync())
+    console.log('Current state 20 is ', gpio20.readSync())
+    console.log('Current state 16 is ', gpio16.readSync())
+    console.log('Current state 26 is ', gpio26.readSync())
+    console.log('Current state 19 is ', gpio19.readSync())
+     console.log('Current state 6 is ', gpio6.readSync())
+     console.log('Current state 13 is ', gpio13.readSync())
 
 }
 

@@ -1,4 +1,4 @@
-const gpio = require('../rpi-gpio');
+const gpio = require('rpi-gpio');
 gpio.setup(40, gpio.DIR_HIGH, write);
 
 function write(err) {

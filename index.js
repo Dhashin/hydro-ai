@@ -1,5 +1,9 @@
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+const Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+
+const http = require('http');
+const url = require('url');
 
 
 const serviceAccount = require('./key.json');
@@ -16,14 +20,121 @@ const sensor = require('node-dht-sensor').promises;
 const sensorNumber = 22;
 const pinNumber = 4;
 
+const gpio21 = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
+const gpio20 = new Gpio(20, 'out');
+const gpio16 = new Gpio(16, 'out');
+const gpio26 = new Gpio(26, 'out');
+const gpio19 = new Gpio(19, 'out');
+const gpio6 = new Gpio(6, 'out');
+const gpio13 = new Gpio(13, 'out');
+
+
+const tearDown = () =>{
+    gpio21.unexport();
+    gpio20.unexport();
+    gpio16.unexport();
+    gpio26.unexport();
+    gpio19.unexport();
+    gpio6.unexport();
+    gpio13.unexport();
+}
+
+const routes = {
+    '/on': switchRelayOn,
+    '/off': switchRelayOff
+};
+
+const getGpioState = () =>{
+    return('Current state 21 is ', gpio21.readSync())
+    return('Current state 20 is ', gpio20.readSync())
+    return('Current state 16 is ', gpio16.readSync())
+    return('Current state 26 is ', gpio26.readSync())
+    return('Current state 19 is ', gpio19.readSync())
+    return('Current state 6 is ', gpio6.readSync())
+    return('Current state 13 is ', gpio13.readSync())
+}
+
+//  On and off controls for 21
+export const turnOn21 = () =>{
+    gpio21.writeSync(1);
+}
+
+export const turnOff21 = () =>{
+    gpio21.writeSync(0);
+}
+
+
+//  On and off controls for 20
+export const turnOn20 = () =>{
+    gpio20.writeSync(1);
+}
+
+export const turnOff20 = () =>{
+    gpio20.writeSync(0);
+}
+
+
+
+//  On and off controls for 16
+export const turnOn16 = () =>{
+    gpio16.writeSync(1);
+}
+
+export const turnOff16 = () =>{
+    gpio16.writeSync(0);
+}
+
+
+//  On and off controls for 26
+export const turnOn26 = () =>{
+    gpio26.writeSync(1);
+}
+
+export const turnOff26 = () =>{
+    gpio26.writeSync(0);
+}
+
+
+
+//  On and off controls for 19
+export const turnOn19 = () =>{
+    gpio19.writeSync(1);
+}
+
+export const turnOff19 = () =>{
+    gpio19.writeSync(0);
+}
+
+
+//  On and off controls for 6
+export const turnOn6 = () =>{
+    gpio6.writeSync(1);
+}
+
+export const turnOff6 = () =>{
+    gpio6.writeSync(0);
+}
+
+
+//  On and off controls for 13
+export const turnOn13 = () =>{
+    gpio13.writeSync(1);
+}
+
+export const turnOff13 = () =>{
+    gpio13.writeSync(0);
+}
+
+
+
 
 async function exec() {
     try {
         const res = await sensor.read(22, 4);
-        console.log(
-            `temp: ${res.temperature.toFixed(1)}°C, ` +
-            `humidity: ${res.humidity.toFixed(1)}%`
-        );
+        // console.log(
+        //     `temp: ${res.temperature.toFixed(1)}°C, ` +
+        //     `humidity: ${res.humidity.toFixed(1)}%`
+        // );
     } catch (err) {
         console.error("Failed to read sensor data:", err);
     }
@@ -41,7 +152,7 @@ async function writeUsers() {
         hour12: false,
         hour: "numeric",
         minute: "numeric"}).replaceAll('/','-');
-    console.log(currentDate);
+  //  console.log(currentDate);
     const docRef = await db.collection('environment').doc(`${currentDate}`);
     const docRefCooler = await db.collection('cooler').doc('1');
     const docRefHeater = await db.collection('heater').doc('1');
@@ -50,22 +161,7 @@ async function writeUsers() {
 
     let finaltemp
     let finalhumidity
-    //
-    //  await sensor.read(sensorNumber, pinNumber, (err, temperature, humidity) =>  {
-    //     if (err) {
-    //         console.log("AHHHHHHHH error", err);
-    //         return;
-    //     }
-    //
-    //     console.log('temp: ' + temperature.toFixed(1) + '°C, ' + 'humidity: ' + humidity.toFixed(1) +  '%');
-    //     finaltemp = temperature.toFixed(1) + '°C';
-    //     finalhumidity = humidity.toFixed(1)  +  '%';
-    //     docRef.set({
-    //         temp : `${finaltemp}`,
-    //         humidity : `${finalhumidity}`
-    //     });
-    //
-    // });
+
 
     try {
         const res = await sensor.read(22, 4);
@@ -73,54 +169,54 @@ async function writeUsers() {
         finaltemp = res.temperature.toFixed(1) ;
         finalhumidity = res.humidity.toFixed(1);
 
-        console.log(
-            `temp: ${finaltemp}°C` +
-            `humidity: ${finalhumidity}%`
-        );
+        // console.log(
+        //     `temp: ${finaltemp}°C` +
+        //     `humidity: ${finalhumidity}%`
+        // );
            const result= await docRef.set({
                 temp : `${finaltemp}°C`,
                 humidity : `${finalhumidity}%`
             })
-        console.log(result);
+      //  console.log(result);
         if(finaltemp > 24){
-            console.log('Turning on cooler')
+          //  console.log('Turning on cooler')
             await docRefCooler.set({
                 status : 'on'
             })
-            console.log('Turning off heater')
+         //   console.log('Turning off heater')
             await docRefHeater.set({
                 status : 'off'
             })
         }else if(finaltemp < 21 ){
-            console.log('Turning on heater')
+        //    console.log('Turning on heater')
             await docRefHeater.set({
                 status : 'on'
             })
-            console.log('Turning off cooler')
+        //    console.log('Turning off cooler')
             await docRefCooler.set({
                 status : 'off'
             })
         }
 
         if(finalhumidity < 60) {
-            console.log('Turning on humidifier')
+         //   console.log('Turning on humidifier')
             await docRefHumidifier.set({
                 status : 'on'
             })
         }else if(finalhumidity > 80){
-            console.log('Turning off humidifier')
+       //     console.log('Turning off humidifier')
             await docRefHumidifier.set({
                 status : 'off'
             })
         }
 
         if(finalhumidity < 70) {
-            console.log('Turning off extractor')
+      //      console.log('Turning off extractor')
             await docRefExtractor.set({
                 status : 'off'
             })
         }else if(finalhumidity > 90){
-            console.log('Turning on extractor')
+       //     console.log('Turning on extractor')
             await docRefExtractor.set({
                 status : 'on'
             })
@@ -150,10 +246,61 @@ const sleep=(milliseconds) =>{
 const readUsers = async()=>{
     const snapshot = await db.collection('environment').get();
     snapshot.forEach((doc) => {
-        console.log(doc.id, '=>', doc.data());
+   //     console.log(doc.id, '=>', doc.data());
     });
 }
 
+const switchRelayOn =(request, response)=>{
+
+    if(request.body.pin==21){
+        turnOn21()
+    }
+    if(request.body.pin==6){
+        turnOn6()
+    }
+    if(request.body.pin==13){
+        turnOn13()
+    }
+    if(request.body.pin==19){
+        turnOn19()
+    }
+    if(request.body.pin==16){
+        turnOn16()
+    }
+    if(request.body.pin==20){
+        turnOn20()
+    }
+    if(request.body.pin==26){
+        turnOn26()
+    }
+
+}
+
+const switchRelayOff =(request, response)=>{
+
+    if(request.body.pin==21){
+        turnOff21()
+    }
+    if(request.body.pin==6){
+        turnOff6()
+    }
+    if(request.body.pin==13){
+        turnOff13()
+    }
+    if(request.body.pin==19){
+        turnOff19()
+    }
+    if(request.body.pin==16){
+        turnOff16()
+    }
+    if(request.body.pin==20){
+        turnOff20()
+    }
+    if(request.body.pin==26){
+        turnOff26()
+    }
+
+}
 
 
 async function execute(){
@@ -166,3 +313,10 @@ async function execute(){
 
 execute().then()
 
+
+let server = http.createServer(function(request, response) {
+    let urlParts = url.parse(request.url);
+    let route = routes[urlParts.pathname];
+    if (route) route(request, response);
+    else utilities.sendResponse(response, 'Not Found', 404);
+}).listen(3000, '127.0.0.1');

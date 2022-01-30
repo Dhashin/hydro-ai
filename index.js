@@ -137,10 +137,7 @@ async function exec() {
     }
 }
 
-const routes = {
-    '/on': switchRelayOn,
-    '/off': switchRelayOff
-};
+
 //exec();
 
 
@@ -303,6 +300,10 @@ const switchRelayOff =(request, response)=>{
 
 }
 
+const routes = {
+    '/on': switchRelayOn,
+    '/off': switchRelayOff
+};
 
 async function execute(){
     while(1===1){

@@ -1,35 +1,42 @@
 let Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-const LED = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
-
+const gpio21 = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
+const gpio20 = new Gpio(20, 'out');
+const gpio16 = new Gpio(16, 'out');
+const gpio26 = new Gpio(26, 'out');
+const gpio19 = new Gpio(19, 'out');
+const gpio6 = new Gpio(6, 'out');
+const gpio13 = new Gpio(13, 'out');
 
 console.log('Cureent state is ', LED.readSync())
 
 
  function runPin(){
-    LED.writeSync(1); //set pin state to 1 (turn LED on)
-    console.log('Current state is ', LED.readSync())
-    console.log('Current state is ', LED.readSync())
-    console.log('Current state is ', LED.readSync())
-    console.log('Current state is ', LED.readSync())
-    console.log('Current state is ', LED.readSync())
+     gpio21.writeSync(1); //set pin state to 1 (turn LED on)
+     gpio20.writeSync(1);
+     gpio16.writeSync(1);
+     gpio26.writeSync(1);
+     gpio19.writeSync(1);
+     gpio6.writeSync(1);
+     gpio13.writeSync(1);
+
+    console.log('Current state is ', gpio21.readSync())
+    console.log('Current state is ', gpio20.readSync())
+    console.log('Current state is ', gpio16.readSync())
+    console.log('Current state is ', gpio26.readSync())
+    console.log('Current state is ', gpio19.readSync())
+     console.log('Current state is ', gpio6.readSync())
+     console.log('Current state is ', gpio13.readSync())
 
 }
 
 
-// function blinkLED() { //function to start blinking
-//     if (LED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-//         LED.writeSync(1); //set pin state to 1 (turn LED on)
-//     } else {
-//         LED.writeSync(0); //set pin state to 0 (turn LED off)
-//     }
-// }
-//
-// function endBlink() { //function to stop blinking
-//     clearInterval(blinkInterval); // Stop blink intervals
-//     LED.writeSync(0); // Turn LED off
-//     LED.unexport(); // Unexport GPIO to free resources
-// }
-//
-// setTimeout(endBlink, 5000); //stop blinking after 5 seconds
 runPin();
-LED.unexport();
+gpio21.unexport(); //set pin state to 1 (turn LED on)
+gpio20.unexport();
+gpio16.unexport();
+gpio26.unexport();
+gpio19.unexport();
+gpio6.unexport();
+gpio13.unexport();
+
+

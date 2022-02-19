@@ -150,8 +150,9 @@ async function writeUsers() {
             year: "2-digit",
             hour12: false,
             hour: "numeric",
-            minute: "numeric"})).toString()
-            .replaceAll('/','-');
+            minute: "numeric"}))
+            //.toString()
+            //.replaceAll('/','-');
     }
     catch (err){
 

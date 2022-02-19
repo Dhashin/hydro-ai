@@ -142,15 +142,22 @@ async function exec() {
 
 
 async function writeUsers() {
+    let currentDate
+    try{
+        currentDate = (new Date().toLocaleString('en-ZA', {
+            day: "2-digit",
+            month: "2-digit",
+            year: "2-digit",
+            hour12: false,
+            hour: "numeric",
+            minute: "numeric"})).toString()
+            .replaceAll('/','-');
+    }
+    catch (err){
 
-    let currentDate = (new Date().toLocaleString('en-ZA', {
-        day: "2-digit",
-        month: "2-digit",
-        year: "2-digit",
-        hour12: false,
-        hour: "numeric",
-        minute: "numeric"})).toString()
-        .replaceAll('/','-');
+    }
+
+
   //  console.log(currentDate);
     const docRef = await db.collection('environment').doc(`${currentDate}`);
     const docRefCooler = await db.collection('cooler').doc('1');

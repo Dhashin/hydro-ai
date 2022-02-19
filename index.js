@@ -143,13 +143,14 @@ async function exec() {
 
 async function writeUsers() {
 
-    let currentDate = new Date().toLocaleString('en-ZA', {
+    let currentDate = (new Date().toLocaleString('en-ZA', {
         day: "2-digit",
         month: "2-digit",
         year: "2-digit",
         hour12: false,
         hour: "numeric",
-        minute: "numeric"}).replaceAll('/','-');
+        minute: "numeric"}) + '')
+        .replaceAll('/','-');
   //  console.log(currentDate);
     const docRef = await db.collection('environment').doc(`${currentDate}`);
     const docRefCooler = await db.collection('cooler').doc('1');

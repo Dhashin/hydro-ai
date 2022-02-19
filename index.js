@@ -149,7 +149,7 @@ async function writeUsers() {
         year: "2-digit",
         hour12: false,
         hour: "numeric",
-        minute: "numeric"}) + '')
+        minute: "numeric"})).toString()
         .replaceAll('/','-');
   //  console.log(currentDate);
     const docRef = await db.collection('environment').doc(`${currentDate}`);

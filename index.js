@@ -155,7 +155,7 @@ async function writeUsers() {
             .replaceAll('/','-');
     }
     catch (err){
-        console.log('Error getting date')
+        console.log('Error getting date: ', err)
     }
 
 

@@ -152,7 +152,7 @@ async function writeUsers() {
             hour: "numeric",
             minute: "numeric"}))
             .toString()
-            .replaceAll('/','-');
+            .replace('/','-').replace('/','-').replace('/','-');
     }
     catch (err){
         console.log('Error getting date: ', err)

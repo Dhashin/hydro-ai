@@ -159,82 +159,73 @@ async function writeUsers() {
     }
 
 
-    console.log("Current Date: ",currentDate);
-      // const docRef = await db.collection('environment').doc(`${currentDate}`);
-    // const docRefCooler = await db.collection('cooler').doc('1');
-    // const docRefHeater = await db.collection('heater').doc('1');
-    // const docRefHumidifier = await db.collection('humidifier').doc('1');
-    // const docRefExtractor = await db.collection('extractor').doc('1');
-    //
-    // let finaltemp
-    // let finalhumidity
-    //
-    //
-    // try {
-    //     const res = await sensor.read(22, 4);
-    //
-    //     finaltemp = res.temperature.toFixed(1) ;
-    //     finalhumidity = res.humidity.toFixed(1);
-    //
-    //     // console.log(
-    //     //     `temp: ${finaltemp}°C` +
-    //     //     `humidity: ${finalhumidity}%`
-    //     // );
-    //        const result= await docRef.set({
-    //             temp : `${finaltemp}°C`,
-    //             humidity : `${finalhumidity}%`
-    //         })
-    //   //  console.log(result);
-    //     if(finaltemp > 24){
-    //       //  console.log('Turning on cooler')
-    //         await docRefCooler.set({
-    //             status : 'on'
-    //         })
-    //      //   console.log('Turning off heater')
-    //         await docRefHeater.set({
-    //             status : 'off'
-    //         })
-    //     }else if(finaltemp < 21 ){
-    //     //    console.log('Turning on heater')
-    //         await docRefHeater.set({
-    //             status : 'on'
-    //         })
-    //     //    console.log('Turning off cooler')
-    //         await docRefCooler.set({
-    //             status : 'off'
-    //         })
-    //     }
-    //
-    //     if(finalhumidity < 60) {
-    //      //   console.log('Turning on humidifier')
-    //         await docRefHumidifier.set({
-    //             status : 'on'
-    //         })
-    //     }else if(finalhumidity > 80){
-    //    //     console.log('Turning off humidifier')
-    //         await docRefHumidifier.set({
-    //             status : 'off'
-    //         })
-    //     }
-    //
-    //     if(finalhumidity < 70) {
-    //   //      console.log('Turning off extractor')
-    //         await docRefExtractor.set({
-    //             status : 'off'
-    //         })
-    //     }else if(finalhumidity > 90){
-    //    //     console.log('Turning on extractor')
-    //         await docRefExtractor.set({
-    //             status : 'on'
-    //         })
-    //     }
-    //
-    // } catch (err) {
-    //     console.error("Failed to read sensor data:", err);
-    // }
-    //
-    //
-    //
+   // console.log("Current Date: ",currentDate);
+      const docRef = await db.collection('environment').doc(`${currentDate}`);
+    const docRefCooler = await db.collection('cooler').doc('1');
+    const docRefHeater = await db.collection('heater').doc('1');
+    const docRefHumidifier = await db.collection('humidifier').doc('1');
+    const docRefExtractor = await db.collection('extractor').doc('1');
+
+    let finaltemp
+    let finalhumidity
+
+
+    try {
+        const res = await sensor.read(22, 4);
+
+        finaltemp = res.temperature.toFixed(1) ;
+        finalhumidity = res.humidity.toFixed(1);
+
+        // console.log(
+        //     `temp: ${finaltemp}°C` +
+        //     `humidity: ${finalhumidity}%`
+        // );
+           const result= await docRef.set({
+                temp : `${finaltemp}°C`,
+                humidity : `${finalhumidity}%`
+            })
+      //  console.log(result);
+        if(finaltemp > 24){
+          //  console.log('Turning on cooler')
+            await docRefCooler.set({
+                status : 'on'
+            })
+         //   console.log('Turning off heater')
+            await docRefHeater.set({
+                status : 'off'
+            })
+        }else if(finaltemp < 21 ){
+        //    console.log('Turning on heater')
+            await docRefHeater.set({
+                status : 'on'
+            })
+        //    console.log('Turning off cooler')
+            await docRefCooler.set({
+                status : 'off'
+            })
+        }
+
+        if(finalhumidity < 60) {
+         //   console.log('Turning on humidifier')
+            turnOn6()
+            await docRefHumidifier.set({
+                status : 'on'
+            })
+        }else if(finalhumidity > 80){
+       //     console.log('Turning off humidifier')
+            turnOff6()
+            await docRefHumidifier.set({
+                status : 'off'
+            })
+        }
+
+
+    } catch (err) {
+        console.error("Failed to read sensor data:", err);
+    }
+
+
+
 
 
 }

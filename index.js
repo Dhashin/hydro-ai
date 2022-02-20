@@ -144,22 +144,22 @@ async function exec() {
 async function writeUsers() {
     let currentDate
     try{
-        currentDate = (new Date().toLocaleString('en-ZA', {
+      await  currentDate = (new Date().toLocaleString('en-ZA', {
             day: "2-digit",
             month: "2-digit",
             year: "2-digit",
             hour12: false,
             hour: "numeric",
             minute: "numeric"}))
-            //.toString()
-            //.replaceAll('/','-');
+            .toString()
+            .replaceAll('/','-');
     }
     catch (err){
-
+        console.log('Error getting date')
     }
 
 
-    console.log("Current Date: ",currentDate);
+    //console.log("Current Date: ",currentDate);
     const docRef = await db.collection('environment').doc(`${currentDate}`);
     const docRefCooler = await db.collection('cooler').doc('1');
     const docRefHeater = await db.collection('heater').doc('1');
@@ -317,7 +317,7 @@ const routes = {
 async function execute(){
     while(1===1){
         await writeUsers();
-        sleep(60000);
+        await sleep(60000);
     }
 
 }

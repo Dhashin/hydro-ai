@@ -185,7 +185,7 @@ async function writeUsers() {
                 humidity : `${finalhumidity}%`
             })
       //  console.log(result);
-        if(finaltemp > 24){
+        if(finaltemp > 26){
           //  console.log('Turning on cooler')
             await docRefCooler.set({
                 status : 'on'

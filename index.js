@@ -21,7 +21,12 @@ const db = getFirestore();
 
 db.collection('cooler').doc('1').onSnapshot(docSnapshot => {
     console.log(`Received doc snapshot: `, docSnapshot.data().status);
-    console.log(`Received doc snapshot: `, docSnapshot.data().toString());
+    if(docSnapshot.data().status===on){
+        turnOn6()
+    }else{
+        turnOff6()
+    }
+
 
     // ...
 }, err => {

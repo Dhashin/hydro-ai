@@ -1,4 +1,4 @@
-export function listenToChanges(db){
+ function listenToChanges(db){
     db.collection('cooler').doc('1').onSnapshot(docSnapshot => {
         console.log(`Received doc snapshot: `, docSnapshot.data().status);
         if(docSnapshot.data().status==='on'){
@@ -170,3 +170,6 @@ export function listenToChanges(db){
     });
 
 }
+
+
+module.exports = { listenToChanges}

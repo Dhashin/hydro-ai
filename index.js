@@ -17,12 +17,9 @@ initializeApp({
 });
 
 const db = getFirestore();
-const docRefCooler = await db.collection('cooler').doc('1');
-const docRefHeater = await db.collection('heater').doc('1');
-const docRefHumidifier = await db.collection('humidifier').doc('1');
-const docRefExtractor = await db.collection('extractor').doc('1');
 
-docRefCooler.onSnapshot(docSnapshot => {
+
+db.collection('cooler').doc('1').onSnapshot(docSnapshot => {
     console.log(`Received doc snapshot: ${docSnapshot}`);
     // ...
 }, err => {
@@ -162,6 +159,7 @@ async function exec() {
 
 
 async function writeUsers() {
+
     let currentDate
     try{
         currentDate =  (new Date().toLocaleString('en-ZA', {
@@ -181,6 +179,10 @@ async function writeUsers() {
 
    // console.log("Current Date: ",currentDate);
       const docRef = await db.collection('environment').doc(`${currentDate}`);
+    const docRefCooler = await db.collection('cooler').doc('1');
+    const docRefHeater = await db.collection('heater').doc('1');
+    const docRefHumidifier = await db.collection('humidifier').doc('1');
+    const docRefExtractor = await db.collection('extractor').doc('1');
 
 
     let finaltemp

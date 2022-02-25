@@ -20,7 +20,8 @@ const db = getFirestore();
 
 
 db.collection('cooler').doc('1').onSnapshot(docSnapshot => {
-    console.log(`Received doc snapshot: `, docSnapshot.data().toLocaleString());
+    console.log(`Received doc snapshot: `, docSnapshot.data().status);
+    console.log(`Received doc snapshot: `, docSnapshot.data().toString());
 
     // ...
 }, err => {

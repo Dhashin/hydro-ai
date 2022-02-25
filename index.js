@@ -1,9 +1,6 @@
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
 
-
-
-
 const Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
 const http = require('http');
@@ -11,7 +8,6 @@ const url = require('url');
 
 
 const serviceAccount = require('./key.json');
-const {listenToChanges} = require("./firebase-listen");
 
 initializeApp({
     credential: cert(serviceAccount)
@@ -393,12 +389,178 @@ listenToChanges(db);
 execute().then()
 
 
-let server = http.createServer(function(request, response) {
-    let urlParts = url.parse(request.url);
-    let route = routes[urlParts.pathname];
-    if (route) route(request, response);
-    else utilities.sendResponse(response, 'Not Found', 404);
-}).listen(3000, '127.0.0.1');
+function listenToChanges(db){
+    db.collection('cooler').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn6()
+        }else{
+            turnOff6()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+
+    db.collection('pump1').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn2()
+        }else{
+            turnOff2()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('pump2').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn3()
+        }else{
+            turnOff3()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('pump3').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn17()
+        }else{
+            turnOff17()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('pump4').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn27()
+        }else{
+            turnOff27()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('extractor').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn20()
+        }else{
+            turnOff20()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('heater').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn21()
+        }else{
+            turnOff21()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('humidifier').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn26()
+        }else{
+            turnOff26()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('supplyPump').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn16()
+        }else{
+            turnOff16()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('drainPump').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn13()
+        }else{
+            turnOff13()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+
+    db.collection('phUp').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn19()
+        }else{
+            turnOff19()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+    db.collection('phDown').doc('1').onSnapshot(docSnapshot => {
+        console.log(`Received doc snapshot: `, docSnapshot.data().status);
+        if(docSnapshot.data().status==='on'){
+            turnOn14()
+        }else{
+            turnOff14()
+        }
+
+
+        // ...
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+
+}
 
 
 process.on('SIGINT', function() {

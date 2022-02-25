@@ -11,6 +11,7 @@ const url = require('url');
 
 
 const serviceAccount = require('./key.json');
+const {listenToChanges} = require("./firebase-listen");
 
 initializeApp({
     credential: cert(serviceAccount)
@@ -18,26 +19,12 @@ initializeApp({
 
 const db = getFirestore();
 
-
-db.collection('cooler').doc('1').onSnapshot(docSnapshot => {
-    console.log(`Received doc snapshot: `, docSnapshot.data().status);
-    if(docSnapshot.data().status==='on'){
-        turnOn6()
-    }else{
-        turnOff6()
-    }
-
-
-    // ...
-}, err => {
-    console.log(`Encountered error: ${err}`);
-});
-
 const sensor = require('node-dht-sensor').promises;
 
 const sensorNumber = 22;
 const pinNumber = 4;
 
+// Individual relays
 const gpio21 = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
 const gpio20 = new Gpio(20, 'out');
 const gpio16 = new Gpio(16, 'out');
@@ -45,6 +32,12 @@ const gpio26 = new Gpio(26, 'out');
 const gpio19 = new Gpio(19, 'out');
 const gpio6 = new Gpio(6, 'out');
 const gpio13 = new Gpio(13, 'out');
+const gpio14 = new Gpio(14, 'out');
+// 4 channel relay
+const gpio2 = new Gpio(2, 'out');
+const gpio3 = new Gpio(3, 'out');
+const gpio17 = new Gpio(17, 'out');
+const gpio27 = new Gpio(27, 'out');
 
 
 const tearDown = () =>{
@@ -55,6 +48,12 @@ const tearDown = () =>{
     gpio19.unexport();
     gpio6.unexport();
     gpio13.unexport();
+    gpio14.unexport();
+
+    gpio2.unexport();
+    gpio3.unexport();
+    gpio17.unexport();
+    gpio27.unexport();
 }
 
 
@@ -76,6 +75,15 @@ const getGpioState = () =>{
 
  const turnOff21 = () =>{
     gpio21.writeSync(0);
+}
+
+//  On and off controls for 14
+const turnOn14 = () =>{
+    gpio14.writeSync(1);
+}
+
+const turnOff14 = () =>{
+    gpio14.writeSync(0);
 }
 
 
@@ -139,6 +147,47 @@ const getGpioState = () =>{
  const turnOff13 = () =>{
     gpio13.writeSync(0);
 }
+
+
+//  On and off controls for 2
+const turnOn2 = () =>{
+    gpio2.writeSync(1);
+}
+
+const turnOff2 = () =>{
+    gpio2.writeSync(0);
+}
+
+//  On and off controls for 3
+const turnOn3 = () =>{
+    gpio3.writeSync(1);
+}
+
+const turnOff3 = () =>{
+    gpio3.writeSync(0);
+}
+
+//  On and off controls for 17
+const turnOn17 = () =>{
+    gpio17.writeSync(1);
+}
+
+const turnOff17 = () =>{
+    gpio17.writeSync(0);
+}
+
+//  On and off controls for 27
+const turnOn27 = () =>{
+    gpio27.writeSync(1);
+}
+
+const turnOff27 = () =>{
+    gpio27.writeSync(0);
+}
+
+
+
+
 
 function watchForManualOperation(){
 
@@ -338,6 +387,8 @@ async function execute(){
     }
 
 }
+
+listenToChanges(db);
 
 execute().then()
 

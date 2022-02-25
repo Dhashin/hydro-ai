@@ -21,7 +21,7 @@ const db = getFirestore();
 
 db.collection('cooler').doc('1').onSnapshot(docSnapshot => {
     console.log(`Received doc snapshot: `, docSnapshot.data().status);
-    if(docSnapshot.data().status===on){
+    if(docSnapshot.data().status==='on'){
         turnOn6()
     }else{
         turnOff6()

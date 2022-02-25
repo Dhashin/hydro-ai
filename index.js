@@ -1,5 +1,9 @@
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+
+
+
+
 const Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
 const http = require('http');
@@ -13,7 +17,17 @@ initializeApp({
 });
 
 const db = getFirestore();
+const docRefCooler = await db.collection('cooler').doc('1');
+const docRefHeater = await db.collection('heater').doc('1');
+const docRefHumidifier = await db.collection('humidifier').doc('1');
+const docRefExtractor = await db.collection('extractor').doc('1');
 
+docRefCooler.onSnapshot(docSnapshot => {
+    console.log(`Received doc snapshot: ${docSnapshot}`);
+    // ...
+}, err => {
+    console.log(`Encountered error: ${err}`);
+});
 
 const sensor = require('node-dht-sensor').promises;
 
@@ -122,6 +136,12 @@ const getGpioState = () =>{
     gpio13.writeSync(0);
 }
 
+function watchForManualOperation(){
+
+
+
+
+}
 
 
 
@@ -161,10 +181,7 @@ async function writeUsers() {
 
    // console.log("Current Date: ",currentDate);
       const docRef = await db.collection('environment').doc(`${currentDate}`);
-    const docRefCooler = await db.collection('cooler').doc('1');
-    const docRefHeater = await db.collection('heater').doc('1');
-    const docRefHumidifier = await db.collection('humidifier').doc('1');
-    const docRefExtractor = await db.collection('extractor').doc('1');
+
 
     let finaltemp
     let finalhumidity

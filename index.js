@@ -20,20 +20,23 @@ const sensor = require('node-dht-sensor').promises;
 const sensorNumber = 22;
 const pinNumber = 4;
 
+let lowerHumidity = 80;
+let upperHumidity = 90;
+
 // Individual relays
 const gpio21 = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
 const gpio20 = new Gpio(20, 'out');
 const gpio16 = new Gpio(16, 'out');
-const gpio26 = new Gpio(26, 'out');
+const gpio26 = new Gpio(26, 'out'); // Humidifier
 const gpio19 = new Gpio(19, 'out');
-const gpio6 = new Gpio(6, 'out');
+const gpio6 = new Gpio(6, 'out');// Cooler
 const gpio13 = new Gpio(13, 'out');
 const gpio14 = new Gpio(14, 'out');
 // 4 channel relay
-const gpio2 = new Gpio(2, 'out');
-const gpio3 = new Gpio(3, 'out');
-const gpio17 = new Gpio(17, 'out');
-const gpio27 = new Gpio(27, 'out');
+const gpio2 = new Gpio(2, 'out'); // Pump 1
+const gpio3 = new Gpio(3, 'out');// pump 2
+const gpio17 = new Gpio(17, 'out');// pump 3
+const gpio27 = new Gpio(27, 'out');// pump 4
 
 
 const tearDown = () =>{
@@ -184,16 +187,6 @@ const turnOff27 = () =>{
 
 
 
-
-function watchForManualOperation(){
-
-
-
-
-}
-
-
-
 async function exec() {
     try {
         const res = await sensor.read(22, 4);
@@ -276,15 +269,15 @@ async function writeUsers() {
             })
         }
 
-        if(finalhumidity < 60) {
+        if(finalhumidity < lowerHumidity) {
          //   console.log('Turning on humidifier')
-            turnOn6()
+            turnOn26()
             await docRefHumidifier.set({
                 status : 'on'
             })
-        }else if(finalhumidity > 80){
+        }else if(finalhumidity > higherHumidity){
        //     console.log('Turning off humidifier')
-            turnOff6()
+            turnOff26()
             await docRefHumidifier.set({
                 status : 'off'
             })

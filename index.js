@@ -269,19 +269,19 @@ async function writeUsers() {
             })
         }
 
-        if(finalhumidity < lowerHumidity) {
-         //   console.log('Turning on humidifier')
-            turnOn26()
-            await docRefHumidifier.set({
-                status : 'on'
-            })
-        }else if(finalhumidity > higherHumidity){
-       //     console.log('Turning off humidifier')
-            turnOff26()
-            await docRefHumidifier.set({
-                status : 'off'
-            })
-        }
+       //  if(finalhumidity < lowerHumidity) {
+       //   //   console.log('Turning on humidifier')
+       //      turnOn26()
+       //      await docRefHumidifier.set({
+       //          status : 'on'
+       //      })
+       //  }else if(finalhumidity > higherHumidity){
+       // //     console.log('Turning off humidifier')
+       //      turnOff26()
+       //      await docRefHumidifier.set({
+       //          status : 'off'
+       //      })
+       //  }
 
 
     } catch (err) {

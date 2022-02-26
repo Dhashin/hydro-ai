@@ -14,12 +14,14 @@ sleep(500);
 console.log('Current state 26 is ', gpio26.readSync())
 sleep(500);
 gpio26.writeSync(0);
-sleep(500);
+sleep(30100);
 console.log('Current state 26 is ', gpio26.readSync())
-sleep(500);
+sleep(3000);
 gpio26.writeSync(1);
+sleep(3000);
 console.log('Current state 26 is ', gpio26.readSync())
 gpio26.writeSync(0);
+sleep(3000);
 console.log('Current state 26 is ', gpio26.readSync())
 gpio26.writeSync(1);
 console.log('Current state 26 is ', gpio26.readSync())

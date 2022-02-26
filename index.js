@@ -21,7 +21,7 @@ const sensorNumber = 22;
 const pinNumber = 4;
 
 let lowerHumidity = 80;
-let upperHumidity = 90;
+let higherHumidity = 90;
 
 // Individual relays
 const gpio21 = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output

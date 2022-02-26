@@ -484,9 +484,11 @@ function listenToChanges(db){
 
     db.collection('humidifier').doc('1').onSnapshot(docSnapshot => {
         console.log(`Received doc snapshot: `, docSnapshot.data().status);
-        if(docSnapshot.data().status==='on'){
+        if(docSnapshot.data().status.toString()==='on'){
+            console.log('turning on humidifier - 26')
             turnOn26()
         }else{
+            console.log('turning off humidifier - 26')
             turnOff26()
         }
 

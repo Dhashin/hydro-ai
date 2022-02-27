@@ -8,11 +8,14 @@ const sleep=(milliseconds) =>{
     } while (currentDate - date < milliseconds);
 }
 const gpio26 = new Gpio(26, 'out');
+const gpio6 = new Gpio(6, 'out');
 gpio26.write(1).then(r => {});
 sleep(500);
+gpio6.write(1).then(r => {});
 
 console.log('Current state 26 is ', gpio26.readSync())
 sleep(500);
+gpio6.write(0).then(r => {});
 gpio26.write(0).then(r => {});
 sleep(30100);
 console.log('Current state 26 is ', gpio26.readSync())

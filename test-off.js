@@ -1,5 +1,5 @@
 const Gpio = require('onoff').Gpio; // Gpio class
-const led = new Gpio(6, 'out');       // Export GPIO17 as an output
+const led = new Gpio(26, 'out');       // Export GPIO17 as an output
 
 // Toggle the state of the LED connected to GPIO17 every 200ms
 const iv = setInterval(_ => led.writeSync(led.readSync() ^ 1), 200);

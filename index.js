@@ -5,6 +5,9 @@ const Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
 const http = require('http');
 const url = require('url');
+const waterTempSensor = require('ds18b20-raspi');
+let waterTempC;
+
 
 
 const serviceAccount = require('./key.json');
@@ -18,25 +21,25 @@ const db = getFirestore();
 const sensor = require('node-dht-sensor').promises;
 
 const sensorNumber = 22;
-const pinNumber = 4;
+const pinNumber = 15;
 
 let lowerHumidity = 80;
 let higherHumidity = 90;
 
 // Individual relays
-const gpio21 = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
-const gpio20 = new Gpio(20, 'out');
-const gpio16 = new Gpio(16, 'out');
+const gpio21 = new Gpio(21, 'out'); // Nutrient 1
+const gpio20 = new Gpio(20, 'out'); // Nutrient 2
+const gpio16 = new Gpio(16, 'out'); // Nutrient 3
 const gpio26 = new Gpio(26, 'out'); // Humidifier
-const gpio19 = new Gpio(19, 'out');
-const gpio6 = new Gpio(6, 'out');// Cooler
-const gpio13 = new Gpio(13, 'out');
-const gpio14 = new Gpio(14, 'out');
+const gpio19 = new Gpio(19, 'out'); // ph down
+const gpio6 = new Gpio(6, 'out');   // Cooler
+const gpio13 = new Gpio(13, 'out'); // ph up
+const gpio14 = new Gpio(14, 'out'); // Pump 5
 // 4 channel relay
-const gpio2 = new Gpio(2, 'out'); // Pump 1
-const gpio3 = new Gpio(3, 'out');// pump 2
-const gpio17 = new Gpio(17, 'out');// pump 3
-const gpio27 = new Gpio(27, 'out');// pump 4
+const gpio2 = new Gpio(2, 'out');   // Pump 1
+const gpio3 = new Gpio(3, 'out');   // pump 2
+const gpio17 = new Gpio(17, 'out'); // pump 3
+const gpio27 = new Gpio(27, 'out'); // pump 4
 
 
 const tearDown = () =>{
@@ -236,6 +239,7 @@ async function writeUsers() {
 
     try {
         const res = await sensor.read(22, 4);
+        waterTempC = waterTempSensor.readSimpleC();
 
         finaltemp = res.temperature.toFixed(1) ;
         finalhumidity = res.humidity.toFixed(1);
@@ -246,7 +250,8 @@ async function writeUsers() {
         // );
            const result= await docRef.set({
                 temp : `${finaltemp}°C`,
-                humidity : `${finalhumidity}%`
+                humidity : `${finalhumidity}%`,
+                waterTemp: `${waterTempC}°C`
             })
       //  console.log(result);
         if(finaltemp > 26){
@@ -312,57 +317,6 @@ const readUsers = async()=>{
     });
 }
 
-const switchRelayOn =(request, response)=>{
-
-    if(request.body.pin==21){
-        turnOn21()
-    }
-    if(request.body.pin==6){
-        turnOn6()
-    }
-    if(request.body.pin==13){
-        turnOn13()
-    }
-    if(request.body.pin==19){
-        turnOn19()
-    }
-    if(request.body.pin==16){
-        turnOn16()
-    }
-    if(request.body.pin==20){
-        turnOn20()
-    }
-    if(request.body.pin==26){
-        turnOn26()
-    }
-
-}
-
-const switchRelayOff =(request, response)=>{
-
-    if(request.body.pin==21){
-        turnOff21()
-    }
-    if(request.body.pin==6){
-        turnOff6()
-    }
-    if(request.body.pin==13){
-        turnOff13()
-    }
-    if(request.body.pin==19){
-        turnOff19()
-    }
-    if(request.body.pin==16){
-        turnOff16()
-    }
-    if(request.body.pin==20){
-        turnOff20()
-    }
-    if(request.body.pin==26){
-        turnOff26()
-    }
-
-}
 
 const routes = {
     '/on': switchRelayOn,

@@ -1,5 +1,5 @@
 const Gpio = require('onoff').Gpio; // Gpio class
-const led = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
+const led = new Gpio(14, 'out'); //use GPIO pin 4, and specify that it is output
 // const led = new Gpio(20, 'out');
 // const led = new Gpio(16, 'out');
 // const led = new Gpio(26, 'out'); // Humidifier

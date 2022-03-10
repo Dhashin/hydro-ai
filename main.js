@@ -8,7 +8,7 @@ const iv = setInterval(_ => controlFunction(), 60000);
 // Stop blinking the LED after 5 seconds
 setTimeout(_ => {
     clearInterval(iv); // Stop blinking
-    led.unexport();    // Unexport GPIO and free resources
+  //  led.unexport();    // Unexport GPIO and free resources
 }, 300000);
 
 

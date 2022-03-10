@@ -14,7 +14,7 @@ const led = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
 // const led = new Gpio(27, 'out');// pump 4     // Export GPIO17 as an output
 
 // Toggle the state of the LED connected to GPIO17 every 200ms
-const iv = setInterval(_ => led.writeSync(led.readSync() ^ 1), 200);
+const iv = setInterval(_ => led.writeSync(0), 200);
 
 // Stop blinking the LED after 5 seconds
 setTimeout(_ => {

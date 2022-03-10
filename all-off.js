@@ -15,35 +15,20 @@ const gpio17 = new Gpio(17, 'out'); // pump 3
 const gpio27 = new Gpio(27, 'out'); // pump 4
 
 
-gpio2.writeSync(1);
-gpio3.writeSync(1);
-gpio17.writeSync(1);
-gpio27.writeSync(1);
+gpio2.writeSync(0);
+gpio3.writeSync(0);
+gpio17.writeSync(0);
+gpio27.writeSync(0);
 
-gpio14.writeSync(1);
-gpio13.writeSync(1);
-gpio6.writeSync(1);
-gpio19.writeSync(1);
+gpio14.writeSync(0);
+gpio13.writeSync(0);
+gpio6.writeSync(0);
+gpio19.writeSync(0);
 
-gpio26.writeSync(1);
-gpio16.writeSync(1);
-gpio20.writeSync(1);
-gpio21.writeSync(1);
+gpio26.writeSync(0);
+gpio16.writeSync(0);
+gpio20.writeSync(0);
+gpio21.writeSync(0);
 
 
-
-gpio2.unexport();
-gpio3.unexport();
-gpio17.unexport();
-gpio27.unexport();
-
-gpio14.unexport();
-gpio13.unexport();
-gpio6.unexport();
-gpio19.unexport();
-
-gpio26.unexport();
-gpio16.unexport();
-gpio20.unexport();
-gpio21.unexport();
 

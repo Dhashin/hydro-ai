@@ -47,13 +47,3 @@ gpio16.unexport();
 gpio20.unexport();
 gpio21.unexport();
 
-
-
-
-
-
-
-
-
-
-gpio26.unexport();

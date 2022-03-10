@@ -37,7 +37,7 @@ gpio3.unexport();
 gpio17.unexport();
 gpio27.unexport();
 
-gpio14.unexport();
+
 gpio13.unexport();
 gpio6.unexport();
 gpio19.unexport();

@@ -1,10 +1,10 @@
 const Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
-const gpio5 = new Gpio(5, 'in');
+const gpio5 = new Gpio(5, 'in');//2
 const gpio22 = new Gpio(22, 'in');
-const gpio12 = new Gpio(12, 'in');
+const gpio12 = new Gpio(12, 'in');//3
 const gpio7 = new Gpio(7, 'in');
-const gpio8 = new Gpio(8, 'in');
+const gpio8 = new Gpio(8, 'in');// 1
 
 
 function readLevel( pin){

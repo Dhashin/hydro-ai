@@ -1,9 +1,9 @@
 const Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 
 const gpio5 = new Gpio(5, 'in');//2
-const gpio22 = new Gpio(22, 'in');
+const gpio22 = new Gpio(22, 'in');//4
 const gpio12 = new Gpio(12, 'in');//3
-const gpio7 = new Gpio(7, 'in');
+const gpio7 = new Gpio(7, 'in');//5
 const gpio8 = new Gpio(8, 'in');// 1
 
 
@@ -54,6 +54,8 @@ function logLevel(pin){
         console.log( '22 ', gpio22.readSync());
     }
 }
+
+
 
 
 logLevel(5);

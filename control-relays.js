@@ -2,9 +2,9 @@ const {Gpio} = require("onoff");
 const gpio21 = new Gpio(21, 'out'); // Nutrient 1
 const gpio20 = new Gpio(20, 'out'); // Nutrient 2
 const gpio16 = new Gpio(16, 'out'); // Nutrient 3
-const gpio26 = new Gpio(26, 'out'); // Cooler
+const gpio19 = new Gpio(19, 'out'); // Cooler
 
-const gpio19 = new Gpio(19, 'out'); // ph down
+//const gpio19 = new Gpio(19, 'out'); // ph down
 const gpio6 = new Gpio(6, 'out');   // Humidifier
 const gpio13 = new Gpio(13, 'out'); // ph up
 const gpio14 = new Gpio(14, 'out'); // Pump 5
@@ -21,7 +21,7 @@ function unexportAll(){
     gpio21.unexport();
     gpio20.unexport();
     gpio16.unexport();
-    gpio26.unexport();
+    gpio19.unexport();
 
     gpio19.unexport();
     gpio6.unexport();
@@ -35,12 +35,12 @@ function unexportAll(){
 }
 
 function turnOnCooler(){
-    gpio26.writeSync(1)
+    gpio19.writeSync(1)
 }
 
 
 function turnOffCooler(){
-    gpio26.writeSync(0)
+    gpio19.writeSync(0)
 }
 
 function turnoffP1(){
@@ -83,6 +83,14 @@ function turnonP5(){
     gpio14.writeSync(1);
 }
 
+function turnOnHumidifier(){
+    gpio6.writeSync(1)
+}
+
+function turnOffHumidifier(){
+    gpio6.writeSync(0)
+}
+
 module.exports = {
-    turnonP5, turnoffP1, turnonP4, turnonP3 , turnonP2 , turnonP1, turnoffP2, turnoffP3, turnoffP4, turnoffP5, turnOffCooler, turnOnCooler
+    turnonP5, turnoffP1, turnonP4, turnonP3 , turnonP2 , turnonP1, turnoffP2, turnoffP3, turnoffP4, turnoffP5, turnOffCooler, turnOnCooler, turnOnHumidifier, turnOffHumidifier
 }

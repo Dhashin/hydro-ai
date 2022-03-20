@@ -158,7 +158,7 @@ async function handleEnvironment(){
             })
             turnOnHumidifier()
         }
-        
+
 
     } catch (err) {
         console.error("Failed to read sensor data:", err);

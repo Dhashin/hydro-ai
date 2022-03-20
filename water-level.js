@@ -62,17 +62,21 @@ logLevel(8);
 logLevel(12);
 logLevel(22);
 
-
-
-
-
-
-
-
-
-
 gpio5.unexport()
 gpio22.unexport()
 gpio12.unexport()
 gpio7.unexport()
 gpio8.unexport()
+
+function unExportWaterLevelPins(){
+
+    gpio5.unexport()
+    gpio22.unexport()
+    gpio12.unexport()
+    gpio7.unexport()
+    gpio8.unexport()
+}
+
+module.exports = {
+    readLevel, logLevel, unExportWaterLevelPins
+}

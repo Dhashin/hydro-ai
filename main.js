@@ -6,7 +6,6 @@ const {turnOffCooler, turnOnCooler, turnoffP1, turnonP5, turnoffP4, turnoffP2, t
     turnOnHumidifier,
     turnOffHumidifier
 } = require('./control-relays')
-const {readLevel, logLevel, unExportWaterLevelPins} = require('./water-level')
 const serviceAccount = require('./key.json');
 const waterTempSensor = require("ds18b20-raspi");
 const sensor = require('node-dht-sensor').promises;
@@ -28,6 +27,37 @@ let waterLevel2 = 5;
 let waterLevel3 = 12;
 let waterLevel4 = 22;
 let waterLevel5 = 7;
+
+const gpio5 = new Gpio(5, 'in');//2
+const gpio22 = new Gpio(22, 'in');//4
+const gpio12 = new Gpio(12, 'in');//3
+const gpio7 = new Gpio(7, 'in');//5
+const gpio8 = new Gpio(8, 'in');// 1
+
+
+function readLevel( pin){
+
+    if(pin===5){
+        return gpio5.readSync()
+    }
+
+    if(pin===7){
+        return gpio7.readSync()
+    }
+
+    if(pin===8){
+        return gpio8.readSync()
+    }
+
+    if(pin===12){
+        return gpio12.readSync()
+    }
+
+    if(pin===22){
+        return gpio22.readSync()
+    }
+
+}
 
 
 

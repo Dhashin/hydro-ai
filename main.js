@@ -29,16 +29,10 @@ let waterLevel3 = 12;
 let waterLevel4 = 22;
 let waterLevel5 = 7;
 
-const docRef = await db.collection('environment').doc(`${getCurrentDate()}`);
-const docRefCooler = await db.collection('cooler').doc('1');
-const docRefHeater = await db.collection('heater').doc('1');
-const docRefHumidifier = await db.collection('humidifier').doc('1');
-const docRefExtractor = await db.collection('extractor').doc('1');
-const pump1 = await db.collection('pump1').doc('1');
-const pump2 = await db.collection('pump2').doc('1');
-const pump3 = await db.collection('pump3').doc('1');
-const pump4 = await db.collection('pump4').doc('1');
-const pump5 = await db.collection('pump5').doc('1');
+
+
+
+
 
 
 // Toggle the state of the LED connected to GPIO17 every 200ms
@@ -127,6 +121,8 @@ function handleWaterLevelAndPumps(){
 
 }
 async function handleEnvironment(){
+    const docRef =  await db.collection('environment').doc(`${getCurrentDate()}`);
+    const docRefHumidifier =  await db.collection('humidifier').doc('1');
 
     try {
         const res = await sensor.read(22, 4);

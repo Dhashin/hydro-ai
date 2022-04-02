@@ -113,7 +113,7 @@ async function handleEnvironment(){
     const docRefHumidifier =  await db.collection('humidifier').doc('1');
 
     try {
-        const res = await sensor.read(sensorNumber, pinNumber);
+        const res = await sensor.read(22, 15);
 
 
         let    finalTemp = res.temperature.toFixed(1) ;

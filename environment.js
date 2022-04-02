@@ -11,7 +11,7 @@ const waterTempSensor = require("ds18b20-raspi");
 const sensor = require('node-dht-sensor').promises;
 
 const sensorNumber = 22;
-const pinNumber = 15;
+const pinNumber = 18;
 
 let lowerHumidity = 80;
 let higherHumidity = 70;
@@ -113,7 +113,7 @@ async function handleEnvironment(){
     const docRefHumidifier =  await db.collection('humidifier').doc('1');
 
     try {
-        const res = await sensor.read(22, 15);
+        const res = await sensor.read(22, 18);
 
 
         let    finalTemp = res.temperature.toFixed(1) ;

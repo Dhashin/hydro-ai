@@ -150,7 +150,7 @@ function handleWaterLevelAndPumps(){
     }
 
 }
-async function handleEnvironment(){
+async function ehandleEnvironment(){
     const docRef =  await db.collection('environment').doc(`${getCurrentDate()}`);
     const docRefHumidifier =  await db.collection('humidifier').doc('1');
 
